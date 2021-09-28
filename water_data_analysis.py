@@ -75,7 +75,7 @@ water_data = water_data[filter]
 water_data['Water Quality By Ph'] = water_data['Ph'].apply(lambda x: check_ph_quality(x))
 st.title('Data : ')
 st.dataframe(water_data)
-st.markdown(get_table_download_link(df=water_data), unsafe_allow_html=True)
+st.markdown(get_table_download_link(df=water_data.astype('str'), unsafe_allow_html=True)
 water_data['Time Compare'] = pd.to_datetime(water_data['Time'])
 
 for location in water_data['Location'].unique().tolist():
