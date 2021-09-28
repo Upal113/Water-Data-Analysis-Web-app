@@ -3,7 +3,6 @@ import numpy as np
 from datetime import date, timedelta
 from datetime import datetime as dt
 import gspread
-from pkg_resources import require
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
