@@ -81,6 +81,7 @@ water_data['Time Compare'] = pd.to_datetime(water_data['Time'])
 for location in water_data['Location'].unique().tolist():
     fig = px.scatter(water_data[water_data['Location']==location], x='Hour', y='Ph', animation_frame='Dates', size='Ph', color='Ph',range_color=(0,14),
                 facet_row='Location',
+                range_y = (0,14),     
                 title=f'Hourly statistics of pH of {location}')
     st.plotly_chart(fig)
 
