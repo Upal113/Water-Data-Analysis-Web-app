@@ -20,6 +20,7 @@ water_data_analysis = gc.open_by_key('1peyI2Dn2km2YaHT8wporv6f1tmBHWrI8maMUyJ2hN
 queued_reports = water_data_analysis.worksheet('Queued')
 fixed_reports = water_data_analysis.worksheet('Fixed Reports')
 water_data =  pd.DataFrame(water_data_analysis.worksheet('Input Data').get_all_records())
+water_data = water_data.astype('str')
 def check_ph_quality(pH):
     if pH>=6.5 and pH<=8.5:
         return "Good"
