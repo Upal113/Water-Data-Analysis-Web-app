@@ -39,8 +39,8 @@ def get_table_download_link(df):
             href = f'<a href="data:file/csv;base64,{b64}" download="output.csv">Download csv file</a>'
             return href
 
-date_select_start = st.date_input(label="Select Starting Date", value=(dt.now()-timedelta(days=7))
-date_select_end = st.date_input(label="Select End Date")
+date_select_start = st.date_input(label="Select Starting Date", value=(dt.now()-timedelta(days=7)))
+date_select_end = st.date_input(label="Select Starting Date")
 
 start_time = st.time_input(label='Select Time', value=(dt.now()-timedelta(hours=23)))
 end_time = st.time_input(label='Select End Time')
