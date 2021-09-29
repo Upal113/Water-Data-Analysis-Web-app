@@ -13,7 +13,7 @@ water_data_analysis = gc.open_by_key('1peyI2Dn2km2YaHT8wporv6f1tmBHWrI8maMUyJ2hN
 queued_reports = water_data_analysis.worksheet('Queued')
 fixed_reports = water_data_analysis.worksheet('Fixed Reports')
 
-st.set_page_config(page_title='Water Data Analysis', page_icon='💧', layout='wide')
+st.set_page_config(page_title='Water Quality Control', page_icon='💧', layout='wide')
 
 gc = gspread.service_account(filename='water-q-327318-65fff8bfd57b.json')
 water_data_analysis = gc.open_by_key('1peyI2Dn2km2YaHT8wporv6f1tmBHWrI8maMUyJ2hNqg')
