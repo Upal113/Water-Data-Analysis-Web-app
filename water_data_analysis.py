@@ -8,12 +8,21 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 import base64
+from PIL import Image
+import io
+
 gc = gspread.service_account(filename='water-q-327318-65fff8bfd57b.json')
 water_data_analysis = gc.open_by_key('1peyI2Dn2km2YaHT8wporv6f1tmBHWrI8maMUyJ2hNqg')
 queued_reports = water_data_analysis.worksheet('Queued')
 fixed_reports = water_data_analysis.worksheet('Fixed Reports')
 
 st.set_page_config(page_title='Water Quality Control', page_icon='💧', layout='wide')
+image = Image.open('waterqualitycontrol.png').convert('RGB')
+st.image(
+    image,
+    caption='Welcome to the Water Quality Control Center',
+    use_column_width=True
+)
 
 gc = gspread.service_account(filename='water-q-327318-65fff8bfd57b.json')
 water_data_analysis = gc.open_by_key('1peyI2Dn2km2YaHT8wporv6f1tmBHWrI8maMUyJ2hNqg')
