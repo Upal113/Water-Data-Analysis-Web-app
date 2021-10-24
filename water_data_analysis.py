@@ -10,6 +10,8 @@ import streamlit as st
 import base64
 from PIL import Image
 import io
+import numpy as np
+from sklearn.linear_model import LinearRegression
 
 gc = gspread.service_account(filename='water-q-327318-65fff8bfd57b.json')
 water_data_analysis = gc.open_by_key('1peyI2Dn2km2YaHT8wporv6f1tmBHWrI8maMUyJ2hNqg')
@@ -309,3 +311,82 @@ for l in problem_list:
 
 
 
+water_data =  pd.DataFrame(water_data_analysis.worksheet('Input Data').get_all_records())
+water_data['Time Compare'] = pd.to_datetime(water_data['Time'])
+water_data['Temp']=pd.to_numeric(water_data['Temp'],errors='coerce')
+water_data['D.O. (mg/l)']=pd.to_numeric(water_data['D.O. (mg/l)'],errors='coerce')
+water_data['PH']=pd.to_numeric(water_data['PH'],errors='coerce')
+water_data['B.O.D. (mg/l)']=pd.to_numeric(water_data['B.O.D. (mg/l)'],errors='coerce')
+water_data['NITRATENAN N+ NITRITENANN (mg/l)']=pd.to_numeric(water_data['NITRATENAN N+ NITRITENANN (mg/l)'],errors='coerce')
+water_data['TOTAL COLIFORM (MPN/100ml)Mean']=pd.to_numeric(water_data['TOTAL COLIFORM (MPN/100ml)Mean'],errors='coerce')
+water_data['CONDUCTIVITY']=pd.to_numeric(water_data['CONDUCTIVITY'],errors='coerce')
+water_data['npH']=water_data.PH.apply(lambda x: (100 if (8.5>=x>=7)  
+                                 else(80 if  (8.6>=x>=8.5) or (6.9>=x>=6.8) 
+                                      else(60 if (8.8>=x>=8.6) or (6.8>=x>=6.7) 
+                                          else(40 if (9>=x>=8.8) or (6.7>=x>=6.5)
+                                              else 0)))))
+water_data['ndo']=water_data['D.O. (mg/l)'].apply(lambda x:(100 if (x>=6)  
+                                 else(80 if  (6>=x>=5.1) 
+                                      else(60 if (5>=x>=4.1)
+                                          else(40 if (4>=x>=3) 
+                                              else 0)))))
+water_data['nco']=water_data['TOTAL COLIFORM (MPN/100ml)Mean'].apply(lambda x:(100 if (5>=x>=0)  
+                                 else(80 if  (50>=x>=5) 
+                                      else(60 if (500>=x>=50)
+                                          else(40 if (10000>=x>=500) 
+                                              else 0)))))
+water_data['nbdo']=water_data['D.O. (mg/l)'].apply(lambda x:(100 if (3>=x>=0)  
+                                 else(80 if  (6>=x>=3) 
+                                      else(60 if (80>=x>=6)
+                                          else(40 if (125>=x>=80) 
+                                              else 0)))))
+water_data['nec']=water_data['CONDUCTIVITY'].apply(lambda x:(100 if (75>=x>=0)  
+                                 else(80 if  (150>=x>=75) 
+                                      else(60 if (225>=x>=150)
+                                          else(40 if (300>=x>=225) 
+                                              else 0)))))
+water_data['nna']=water_data['NITRATENAN N+ NITRITENANN (mg/l)'].apply(lambda x:(100 if (20>=x>=0)  
+                                 else(80 if  (50>=x>=20) 
+                                      else(60 if (100>=x>=50)
+                                          else(40 if (200>=x>=100) 
+                                              else 0))))) 
+                                              
+                                                                                           
+water_data['wph']=water_data.npH * 0.165
+water_data['wdo']=water_data.ndo * 0.281
+water_data['wbdo']=water_data.nbdo * 0.234
+water_data['wec']=water_data.nec* 0.009
+water_data['wna']=water_data.nna * 0.028
+water_data['wco']=water_data.nco * 0.281
+water_data['wqi']=water_data.wph+water_data.wdo+water_data.wbdo+water_data.wec+water_data.wna+water_data.wco 
+water_data['Wqi Rating'] = water_data['wqi'].apply(lambda x: wqi_rating(x))
+water_data['Date Compare'] = pd.to_datetime(water_data['Dates'])
+for location in water_data['Location'].unique().tolist():
+    st.write(f'Predicted Forecasting for the next 20 days of {location}')
+    location_data = water_data[water_data['Location']==location].groupby(['Dates', 'Location'])['wqi'].mean().reset_index()
+    location_data.set_index('Dates')
+    location_data['Date Num'] = np.arange(1, len(location_data)+1)
+    location_data
+    formula = LinearRegression()
+    x = location_data['Date Num'].values.reshape(-1,1)
+    y = location_data['wqi'].values.reshape(-1,1)
+    formula.fit(x,y)
+    for date in range(len(location_data)+2, len(location_data)+20):
+        st.write(str(water_data['Date Compare'].tolist()[-1]+ timedelta(days=date)))
+        predicts = formula.predict([[date]])
+        st.write(float(predicts))
+
+for location in water_data['Location'].unique().tolist():
+    st.write(f'Predicted Ph for the next 20 days of {location}')
+    location_data = water_data[water_data['Location']==location].groupby(['Dates', 'Location'])['PH'].mean().reset_index()
+    location_data.set_index('Dates')
+    location_data['Date Num'] = np.arange(1, len(location_data)+1)
+    location_data
+    formula = LinearRegression()
+    x = location_data['Date Num'].values.reshape(-1,1)
+    y = location_data['PH'].values.reshape(-1,1)
+    formula.fit(x,y)
+    for date in range(len(location_data)+2, len(location_data)+20):
+        st.write(str(water_data['Date Compare'].tolist()[-1]+ timedelta(days=date)))
+        predicts = formula.predict([[date]])
+        st.write(float(predicts))
