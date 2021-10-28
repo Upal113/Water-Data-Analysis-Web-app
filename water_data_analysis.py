@@ -58,7 +58,7 @@ def get_table_download_link(df):
 date_select_start = st.date_input(label="Select Starting Date", value=(dt.now()-timedelta(days=5)))
 date_select_end = st.date_input(label="Select End Date")
 
-start_time = st.time_input(label='Select Time', value=(dt.now()-timedelta(hours=23)))
+start_time = st.time_input(label='Select Time')
 end_time = st.time_input(label='Select End Time')
 date_time_select_start = dt.combine(date_select_start, start_time)
 date_time_select_end = dt.combine(date_select_end, end_time)
