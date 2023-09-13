@@ -20,7 +20,7 @@ fixed_reports = water_data_analysis.worksheet('Fixed Reports')
 
 st.set_page_config(page_title='Water Quality Control', page_icon='💧', layout='wide')
 
-gc = gspread.service_account(filename='water-q-327318-65fff8bfd57b.json')
+gc = gspread.service_account(filename='water-q-327318-b5ed18e63c87.json')
 water_data_analysis = gc.open_by_key('1peyI2Dn2km2YaHT8wporv6f1tmBHWrI8maMUyJ2hNqg')
 queued_reports = water_data_analysis.worksheet('Queued')
 fixed_reports = water_data_analysis.worksheet('Fixed Reports')
@@ -49,7 +49,7 @@ def get_table_download_link(df):
             href = f'<a href="data:file/csv;base64,{b64}" download="output.csv">Download csv file</a>'
             return href
 
-date_select_start = st.date_input(label="Select Starting Date", value=(dt.now()-timedelta(days=365)))
+date_select_start = st.date_input(label="Select Starting Date", value=(dt.now()-timedelta(days=1000)))
 date_select_end = st.date_input(label="Select End Date")
 
 start_time = st.time_input(label='Select Time')
@@ -283,8 +283,9 @@ fig.update_layout(
 st.plotly_chart(fig)
 
 problem_list = requring_solve.astype('str').values.tolist()
-for l in problem_list:
+for l in problem_list[50]:
     if l not in fixed_data.values.tolist():
+      try:
         if l in queued_data.values.tolist():
             st.warning('At ' + l[0] + ' In ' + l[3] + ' Water Quality Index Was ' + l[-2] +' Which Is '+ l[-1] + ' This Was Queued To Be Fixed Later.')
             fixed = st.checkbox(label='It is Fixed', key=problem_list.index(l))
@@ -302,7 +303,8 @@ for l in problem_list:
             if fixed:
                 r = l.append(str(dt.now()))
                 fixed_reports.append_row(l,value_input_option='RAW',insert_data_option='INSERT_ROWS', table_range='A1:K1')
-
+      except:
+        pass
 
 
 water_data =  pd.DataFrame(water_data_analysis.worksheet('Input Data').get_all_records())
