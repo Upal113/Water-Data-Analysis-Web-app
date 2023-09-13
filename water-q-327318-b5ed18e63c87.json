@@ -1,1 +1,14 @@
+{
+  "type": "service_account",
+  "project_id": "host-water-quality-control",
+  "private_key_id": "e3c7630b9be2e622c6b04d3c7ee65c0ee296e6bc",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCbDaVAGk5gwbTn\ngPg+gidrvs83oOQVWFzb3jDrtPSUQg43NTRU01Hyb4k8nEzWJAsCf6SHznrr110o\n+TdSzcI03mk1p8G6FBXyV2U6tvn2XduFCUZmeLpDBQPbaZJVbNRNg7eo2Kg+TGFU\nLJe/c61fPGTMbViGbmfKeV+ZZguFLTBMUUHYNk20P3NdypL10cDttWX1gEW9BemM\n0zyHV1c0TgMEsrsp3ISz0i8pu9HkhCh/xQvJKArhCbEnjg4EFak5vgJ4X0s3/6rK\ng2Ts97KzEns8+rjBoyWhbR9ynDCFz4aNFNRwamQOEhhP01EEXdR97ZcCEJ20RL2B\n7rwsbLHnAgMBAAECggEADmazDYQj+XqkWcgxxmSCUtCTIICSDqV5YnZ9prbU7JxC\nA8CuTp6eAt13Kqj9vfn1B9NhLbfw1MzY+0BCci9oNU7fCLu/E5BgBXU2ksCB8O8A\nv5d/8W6PJkBl/lAM5mBIS7bLLSSKY9bmR1Io+gA9fxX16sLRMRM6EqU5St8efMzz\niggyUQDphC272NfT7956YAvhVYnsPx20L0q9FbS9glPL5mDBWG52lAfFNAmV3HIC\nQ/IOHId6V5PqYUrxws0dVf4g8pbEaDOqnUV6nBD6UO1//5XXg0Aw8fv2EC3ReFfL\nvWm0kTV32h2deupvS7J/3RcNjdBBpmr4wiPa2z5EAQKBgQDXuP7nA530J39E8R+E\nVdwsItLOhweHSh4dVNihIYij0w3vURw1Dl+Lh6qKWcTu8JiGyyrYUk1GrgdkhaDi\nFcL17JSsEfKNFNEbLZjI3pkgLXdR23Rbnd3GLX7DlJEze4QbuM6CdAIE+tmk6eXM\n3ymDfa39zeNzIQ/t6xXiiRUb5wKBgQC4AM6ItL+b6WQzswr/f0OAlUtBSBAdlG1G\nA/U1ORD5JjtQonF7wOfhpFayEX9zCcujeUnpgPcpAdVtLP6qPQRCNL+8O0lUvolp\nWAX+XLJVYA6cXFvMVYlkPW3qTtgoDr3O9S+8j8X8w4DON/aXcaFYoWnsMAVRqNbj\n+2vWxij6AQKBgBtmP9oPt4w/SAb1qU8hqKlicuwQcoBYhaKsGCe/Hp/QOsDeyHpk\nrPYH8T1JUZ4XqQfV3kdDjNUhXYcDAgA1S2H4/pksXmZU8opFLFa3DzPrEnCvMwQ/\n9N8rACLPR/IGCi2LN4+SNH91bRdpLerrnVY6LFNER1NkK6XIaisvxiKZAoGBALan\nFl5eDlaWuAEaGjDGBBwAF1QWVOkIDfESvLa4j0DD0t2YY06Vj5lNqUHaXMm1T5BX\nNie0/aSXTWWy5JnZOAEAm9Qehgy5l24bEtgM7HoTgG12wSl1P41h7VpKKgiZmZF3\nkot7rO3cpGAQ7ZgoFCIHGT577MvC7o4hZkstKkABAoGAQj6UqLwyEaDD+7m5vcNJ\n3PV2ENM2sG2ua2/CEy3cNxhFEQRF5n90OfTgl1j4kutWGGEialiHC0cXhiOdROyl\nDcf6GKafH/qzVmsakKjOitcnosBFGWW0woHztEY4dMmb7Zx9NUPjOtypAU90+U78\nv84nnQXKx8Xmt12zBwu+biU=\n-----END PRIVATE KEY-----\n",
+  "client_email": "get-water-quality@host-water-quality-control.iam.gserviceaccount.com",
+  "client_id": "108281557447431566486",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/get-water-quality%40host-water-quality-control.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
 
